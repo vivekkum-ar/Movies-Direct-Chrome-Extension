@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "MoviesDirect",
+  "description": "Movie Chrome Extension",
+  "version": "1.0",
+  "action": {
+    "default_popup": "hellomd.html",
+    "default_icon": "moviesdirectlogo.png"
+  }
+}

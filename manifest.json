@@ -3,8 +3,33 @@
   "name": "MoviesDirect",
   "description": "Movie Chrome Extension",
   "version": "1.0",
+  "permissions": ["storage","tabs","scripting"],
+
   "action": {
     "default_popup": "hellomd.html",
     "default_icon": "moviesdirectlogo.png"
-  }
+  },
+
+    "content_scripts": [
+      {
+          "matches": [
+              "https://*.imdb.com/*",
+              "https://*.wabco-auto.com/login*"
+          ],
+          "js": [
+              "popper.min.js",
+              "content1.js",
+              "bootstrap.min.js",
+              "all.min.js",
+              "fontawesome.min.js",
+              "bootstrap.bundle.min.js"
+          ],
+          "css": [
+              "bootstrap.min.css",
+              "style.css",
+              "all.min.css",
+              "fontawesome.min.css"
+          ]
+      }
+  ]
 }

@@ -7,7 +7,7 @@
 
   "action": {
     "default_popup": "hellomd.html",
-    "default_icon": "moviesdirectlogo.png"
+    "default_icon": "./logo/moviesdirectlogo.png"
   },
 
     "content_scripts": [
@@ -17,18 +17,18 @@
               "https://*.wabco-auto.com/login*"
           ],
           "js": [
-              "popper.min.js",
+              "./js/popper.min.js",
               "content1.js",
-              "bootstrap.min.js",
-              "all.min.js",
-              "fontawesome.min.js",
-              "bootstrap.bundle.min.js"
+              "./js/bootstrap.min.js",
+              "./js/all.min.js",
+              "./js/fontawesome.min.js",
+              "./js/bootstrap.bundle.min.js"
           ],
           "css": [
-              "bootstrap.min.css",
+              "./css/bootstrap.min.css",
               "style.css",
-              "all.min.css",
-              "fontawesome.min.css"
+              "./css/all.min.css",
+              "./css/fontawesome.min.css"
           ]
       }
   ]

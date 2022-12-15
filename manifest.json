@@ -31,5 +31,8 @@
               "./css/fontawesome.min.css"
           ]
       }
-  ]
+  ],
+    "background": {
+      "service_worker": "./js/background.js"
+    }
 }

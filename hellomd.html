@@ -20,49 +20,134 @@
   <script src="./js/all.min.js"></script>
   <!-- FA 6.x end -->
   <link rel="stylesheet" href="./popup.css">
+  <!-- <script src="./popup.js"></script> declared at bottom because the DOM should load first-->  
+  
+  <!-- ------------ font poppins for the product/movie grid added ------------ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
+
 <body>
-<!-- <h1>Hello from MoviesDirect v1.1</h1> -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- ----------------------------------------------------------------------- -->
+        <!--                      Top-fixed navbar starts here                       -->
+        <!-- ----------------------------------------------------------------------- -->
+  <nav class="navbar navbar-expand navbar-light bg-light d-flex align-items-center fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand text-center" href="#">
-      <i class="fa-brands fa-chromecast text-danger" style="width: 1.5rem; height: 1.5rem;"></i>
-      <span class="fs-6">moviesdirect</span>
+    <a class="navbar-brand pe-5 me-2 align-items-center" href="#">
+    <div class="d-flex justify-content-center align-items-center">
+      <!-- <i class="fas fa-bars pe-4 text-danger"></i> -->
+      <i class="fa-brands fa-chromecast text-danger pe-1" style="width: 1.5rem; height: 1.5rem;"></i>
+      <span class="fs-6 span-logo">moviesdirect</span>
+    </div>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
+
       <form class="d-flex me-2">
-        <input class="form-control rounded-pill" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn rounded-pill btn-outline-danger position-absolute top-50 end-0 translate-middle" type="submit">
+        <input class="form-control rounded-pill" id="md-searchBox" type="search" placeholder="Search" aria-label="Search">
+        <button id="md-searchBtn" class="btn rounded-pill btn-outline-danger position-absolute top-50 end-0 translate-middle" type="button">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </form>
     </div>
   </div>
 </nav>
+
+<!-- ----------------------------------------------------------------------- -->
+<!--         Horizontally Scrollable product/movie grid starts here          -->
+<!-- ----------------------------------------------------------------------- -->
+<div class="horizontal-scroll-a"><i id="message-new">Hello</i>
+      <div class="horizontal-scroll-container row padding-for-shadow">
+          <div class="col-6 grid-item">
+              <div class="product-grid">
+                  <div class="product-image">
+                      <a href="#" class="image"><img src="https://api.lorem.space/image/movie?w=150&h=220"></a>
+                      <span class="product-sale-label"><b>5.5 </b><i class="fas fa-star"></i></span>
+                  </div>
+                  <div class="product-content">
+                      <h3 class="title"><a href="#">Movie Title</a></h3>
+                      <div class="price">
+                        <!-- <span>$86.99</span> //strikethrough text not used just uncomment to use it -->
+                        $75.99
+                      </div>
+                      <a class="add-to-cart" href="#"><i class="fas fa-play-circle"></i> Add to cart</a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-6 grid-item">
+              <div class="product-grid">
+                  <div class="product-image">
+                      <a href="#" class="image"><img src="https://api.lorem.space/image/movie?w=150&h=220"></a>
+                      <span class="product-sale-label"><b>10.5 </b><i class="fas fa-star"></i></span>
+                  </div>
+                  <div class="product-content">
+                      <h3 class="title"><a href="#">Movie Title</a></h3>
+                      <div class="price">$58.99</div>
+                      <a class="add-to-cart" href="#"><i class="fas fa-play-circle"></i> Add to cart</a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-6 grid-item">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a href="#" class="image"><img src="https://api.lorem.space/image/movie?w=150&h=220"></a>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">Movie Title</a></h3>
+                    <div class="price">$58.99</div>
+                    <a class="add-to-cart" href="#"><i class="fas fa-play-circle"></i> Add to cart</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 grid-item">
+          <div class="product-grid">
+              <div class="product-image">
+                  <a href="#" class="image"><img src="https://api.lorem.space/image/movie?w=150&h=220"></a>
+              </div>
+              <div class="product-content">
+                  <h3 class="title"><a href="#">Movie Title</a></h3>
+                  <div class="price">$58.99</div>
+                  <a class="add-to-cart" href="#"><i class="fas fa-play-circle"></i> Add to cart</a>
+              </div>
+          </div>
+      </div>
+        <div class="col-6 grid-item">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a href="#" class="image"><img src="https://api.lorem.space/image/movie?w=150&h=220"></a>
+                    <span class="product-sale-label">sale!</span>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">Movie Title</a></h3>
+                    <div class="price">
+                      <!-- <span>$86.99</span>  //strikethrough text not used just uncomment to use it -->
+                        $75.99
+                    </div>
+                    <a class="add-to-cart" href="#"><i class="fas fa-play-circle"></i> Add to cart</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 grid-item">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a href="#" class="image"><img src="https://api.lorem.space/image/movie?w=150&h=220"></a>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">Movie Title</a></h3>
+                    <div class="price">$58.99</div>
+                    <a class="add-to-cart" href="#"><i class="fas fa-play-circle"></i> Add to cart</a>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!--                       Space to include custom js                        -->
+    <!-- ----------------------------------------------------------------------- -->
+    <script src="./popup.js"></script>
+
 </body>
 </html>

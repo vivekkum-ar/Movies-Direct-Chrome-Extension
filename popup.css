@@ -1,0 +1,182 @@
+body            
+{   margin-top: 70px!important; /*added becoz of navbar overlap with other elements*/
+    width:400px;
+    background-color:#ebebeb;
+    font-size:14px;
+    font-family:Verdana;
+}
+
+a.text-transparent{
+    color: #000; /* Fallback for older browsers */
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                 CSS for sideNav from w3schools starts here                 */
+/* -------------------------------------------------------------------------- */
+
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  }
+  
+  /* The navigation menu links */
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  /* Position and style the close button (top right corner) */
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+  #main {
+    transition: margin-left .5s;
+    padding: 20px;
+  }
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+/* -------------------------------------------------------------------------- */
+/*         CSS for horizontally scrollable product grid starts here           */
+/* -------------------------------------------------------------------------- */
+
+/* ---------------------- horizontal scroll starts here --------------------- */
+  .horizontal-scroll-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    margin: 0px;
+  }
+  
+  .horizontal-scroll-container::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+    background-color: #aaa;
+  }
+  
+  .horizontal-scroll-container::-webkit-scrollbar-thumb {
+    background-color: black;
+  }
+  
+  .grid-item {
+    overflow: hidden;
+    padding-bottom: 0px;
+  }
+
+
+
+
+/* --------------------- product/movies grid start here --------------------- */
+.padding-for-shadow{
+  padding: 0px 20px 0px 20px; /* third 0px is for bottom and it fixes over spacing during extension popup */
+}
+
+  .product-grid{
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.product-grid .product-image{ position: relative; }
+.product-grid .product-image a.image{ display: block; }
+.product-grid .product-image img{
+    width: 100%;
+    height: 180px;
+}
+.product-grid .product-sale-label{
+    color: rgb(0, 0, 0);
+    /* color: #fff; */
+    background-color: #f4d264;
+    /* background-color: #e74c39; */
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+    padding: 2px 5px;           /*  Change here to change sale-label or star-label  */
+    border-radius: 0 0 0 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.product-grid .product-content{ padding: 2px 0 0; }
+.product-grid .title{
+    color: #555;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+    text-decoration: none;  /*added*/
+    margin: 0 0 2px;
+}
+.product-grid .title a{
+    color: #555;
+    text-decoration: none;  /*added*/
+    transition: all 0.3s ease 0s;
+}
+.product-grid .title a:hover{ color: #000000; }
+/* .product-grid .title a:hover{ color: #e74c39; } */
+.product-grid .price{
+    color: #606060;
+    font-size: 10px;
+    font-weight: 400;
+    margin: 0 0 2px;
+}
+.product-grid .price span{
+    color: #8f8f8f;
+    font-weight: 500;
+    text-decoration: line-through;
+    margin: 0 5px 0 0;
+}
+.product-grid .add-to-cart{
+    color: #555;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;  /*added*/
+    padding: 5px 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1) inset;
+    display: block;
+    transition: all 0.5s ease;
+}
+.product-grid:hover .add-to-cart{
+    color: #000;
+    background-color: #f4d264;
+    /* background-color: #C7F464; */
+}
+@media screen and (max-width: 990px){
+    .product-grid{ margin: 0 0 30px; }
+}

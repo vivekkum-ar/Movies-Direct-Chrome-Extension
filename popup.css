@@ -119,10 +119,11 @@ a.text-transparent{
     width: 100%;
     height: 180px;
 }
-.product-grid .product-sale-label{
+
+.product-grid .product-sale-label-right{
     color: rgb(0, 0, 0);
     /* color: #fff; */
-    background-color: #f4d264;
+    background-color: #f4d26480;
     /* background-color: #e74c39; */
     font-size: 15px;
     font-weight: 500;
@@ -132,7 +133,35 @@ a.text-transparent{
     position: absolute;
     top: 0;
     right: 0;
+    transition: all 0.5s ease;
 }
+
+.product-grid:hover .product-sale-label-right{
+  color: #000;
+  background-color: #f4d264;
+}
+
+.product-grid .product-sale-label-left{
+  color: rgb(0, 0, 0);
+  /* color: #fff; */
+  background-color: #f4d26480;
+  /* background-color: #e74c39; */
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: capitalize;
+  padding: 2px 5px;           /*  Change here to change sale-label or star-label  */
+  border-radius: 0 0 20px 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.5s ease;
+}
+
+.product-grid:hover .product-sale-label-left{
+  color: #000;
+  background-color: #f4d264;
+}
+
 .product-grid .product-content{ padding: 2px 0 0; }
 .product-grid .title{
     color: #555;

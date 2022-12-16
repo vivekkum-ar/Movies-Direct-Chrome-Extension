@@ -32,3 +32,4 @@ function log(message) {
   document.getElementById("message-new").innerText = message;
 }
 
+

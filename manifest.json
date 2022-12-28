@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "MoviesDirect",
+  "name": "MoviesDirectold",
   "description": "Movie Chrome Extension",
   "version": "1.0",
   "permissions": ["storage","tabs","scripting"],

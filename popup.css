@@ -1,7 +1,7 @@
 body            
 {   margin-top: 70px!important; /*added becoz of navbar overlap with other elements*/
     width:400px;
-    background-color:#ebebeb;
+    /* background-color:#ebebeb; */
     font-size:14px;
     font-family:Verdana;
 }
@@ -11,6 +11,30 @@ a.text-transparent{
     color: rgba(0, 0, 0, 0.5);
 }
 
+#message-new{
+  /* background-image: linear-gradient(60deg, #E21143, #FFB03A); */
+  /* background-clip: text; */
+  color: transparent;
+  background: -webkit-linear-gradient(60deg, #ff0000,#fe2828,#ff7171, #FFB03A);
+  padding-right: 5px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.caveat-gfont{
+font-family: 'Caveat', cursive;
+}
+
+.poppins-gfont{
+font-family: 'Poppins', sans-serif;
+}
+
+.background-clip-text{
+  background: -webkit-linear-gradient(60deg, #ff0000,#fe2828,#ff7171, #FFB03A);
+  padding-right: 5px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 /* -------------------------------------------------------------------------- */
 /*                 CSS for sideNav from w3schools starts here                 */
 /* -------------------------------------------------------------------------- */

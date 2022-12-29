@@ -35,6 +35,10 @@ font-family: 'Poppins', sans-serif;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+#md-searchBtn{
+  border-radius: 0 50px 50px 0;
+}
 /* -------------------------------------------------------------------------- */
 /*                 CSS for sideNav from w3schools starts here                 */
 /* -------------------------------------------------------------------------- */

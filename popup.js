@@ -12,7 +12,7 @@ document.getElementById("md-searchBtn").addEventListener("click", async () => {
   controller = new AbortController();
   try {
     console.log("Request started...");
-    const response = await fetch('https://www.omdbapi.com/?t='+document.getElementById("md-searchBox").value+'&apikey=YOUR_API_KEY', {
+    const response = await fetch('https://www.omdbapi.com/?t=' + document.getElementById("md-searchBox").value + '&apikey=' + omdb_api_key, {
       signal: controller.signal
     });
     const movies = await response.json();
@@ -44,5 +44,5 @@ function log(message) {
 /* -------------------------------------------------------------------------- */
 function populateHscrollA(movies){
   html = '<div class="col-6 grid-item">  <div class="product-grid">      <div class="product-image">          <a href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" class="image"><img src='+movies.Poster+'></a>          <span class="product-sale-label-right"><b>' + movies.imdbRating + ' </b><i class="fas fa-star"></i></span>          <span class="product-sale-label-left">' + movies.Rated + '</span>      </div>      <div class="product-content">          <h3 class="title"><a href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/">' + movies.Title + '</a></h3>          <div class="price">            ' + movies.Released + '          </div>          <a class="add-to-cart" href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/">            <i class="fas fa-play-circle"></i>watch now</a>      </div>  </div></div>';
-  document.querySelector('.horizontal-scroll-a').children[1].innerHTML = html;
+  document.querySelector('.horizontal-scroll-a').children[0].innerHTML = html;
 }

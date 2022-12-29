@@ -3,7 +3,7 @@
   "name": "MoviesDirectold",
   "description": "Movie Chrome Extension",
   "version": "1.0",
-  "permissions": ["storage","tabs","scripting"],
+  "permissions": ["storage","tabs","scripting","activeTab","storage"],
 
   "action": {
     "default_popup": "hellomd.html",
@@ -22,7 +22,8 @@
               "./js/bootstrap.min.js",
               "./js/all.min.js",
               "./js/fontawesome.min.js",
-              "./js/bootstrap.bundle.min.js"
+              "./js/bootstrap.bundle.min.js",
+              "./configuration.js"
           ],
           "css": [
               "./css/bootstrap.min.css",

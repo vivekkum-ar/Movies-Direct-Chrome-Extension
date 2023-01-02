@@ -71,19 +71,23 @@ chrome.storage.local.get(/* String or Array */['imdbID', 'Poster', 'imdbRating',
 /* ---------------------------------------------------------------------------------------------- */
 let controller = null;
 document.getElementById("md-searchBtn").addEventListener("click", async () => {
-  controller = new AbortController();
-  try {
-    console.log("Request started...");
-    const response = await fetch('https://www.omdbapi.com/?t=' + document.getElementById("md-searchBox").value + '&apikey=' + omdb_api_key, {
-      signal: controller.signal
-    });
-    const movies = await response.json();
-    console.log(movies); // Was previousely console.log(`Fetched movies: ${JSON.stringify(movies)}`);
-    populateHscrollA(movies);
-  } catch (error) {
-    console.log(`Fetch error: ${error.name}`);
+  if (document.getElementById("md-searchBox").value === "") {
+    document.getElementById("errorShake").classList.toggle("d-none");
+  } else {
+    controller = new AbortController();
+    try {
+      console.log("Request started...");
+      const response = await fetch('https://www.omdbapi.com/?t=' + document.getElementById("md-searchBox").value + '&apikey=' + omdb_api_key, {
+        signal: controller.signal
+      });
+      const movies = await response.json();
+      console.log(movies); // Was previousely console.log(`Fetched movies: ${JSON.stringify(movies)}`);
+      populateHscrollA(movies);
+    } catch (error) {
+      console.log(`Fetch error: ${error.name}`);
+    }
+    controller = null;
   }
-  controller = null;
 });
 
 cancelFetchButton.addEventListener("click", () => {

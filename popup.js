@@ -153,3 +153,10 @@ function populateHscrollB(movies2){
   }
   document.querySelector('.horizontal-scroll-b').children[0].innerHTML = html2;
 }
+
+/* ---------------------------------------------------------------------------------------------- */
+/*                                   Hide preloader after 3 secs                                  */
+/* ---------------------------------------------------------------------------------------------- */
+setTimeout(function() {
+  document.querySelector(".loader-wrapper").style.display = "none";
+}, 3000);

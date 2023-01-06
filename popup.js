@@ -160,3 +160,14 @@ function populateHscrollB(movies2){
 setTimeout(function() {
   document.querySelector(".loader-wrapper").style.display = "none";
 }, 3000);
+
+/* ---------------------------------------------------------------------------------------------- */
+/*                 FIX: Enter key shows preloader and reloads the extension popup                 */
+/* ---------------------------------------------------------------------------------------------- */
+document.getElementById('md-searchBox').onkeydown = function (evt) {
+  if (evt.key === 'Enter') {
+      evt.preventDefault();
+      evt.stopPropagation();
+      document.getElementById('md-searchBtn').click();
+  }
+};

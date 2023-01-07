@@ -5,6 +5,12 @@ const fetchMoviesButton = document.getElementById("md-searchBtn");
 const cancelFetchButton = document.getElementById("md-searchBox");
 
 /* ---------------------------------------------------------------------------------------------- */
+/*                              default values of fetch for HScroll A                             */
+/* ---------------------------------------------------------------------------------------------- */
+let selectionValue = "movie";
+let seriesId = "";
+
+/* ---------------------------------------------------------------------------------------------- */
 /*                    defaultMovie JSON is used when local storage is empty for                   */
 /*                    running populateHscrollA so that first grid is not empty                    */
 /* ---------------------------------------------------------------------------------------------- */
@@ -108,12 +114,25 @@ function log(message) {
 /*          Function that populates the "horizontal-scroll-a" that is         */
 /*                      present in the hellomd.html file                      */
 /* -------------------------------------------------------------------------- */
-function populateHscrollA(movies) {
-  chrome.storage.local.set({ "imdbID": movies.imdbID, "Poster": movies.Poster, "imdbRating": movies.imdbRating, "Rated": movies.Rated, "Title": movies.Title, "Released": movies.Released, "Type": movies.Type }, function () {
+function populateHscrollA(movies){
+  chrome.storage.local.set({ "imdbID": movies.imdbID ,"Poster":movies.Poster,"imdbRating":movies.imdbRating,"Rated":movies.Rated,"Title":movies.Title,"Released":movies.Released,"Type":movies.Type }, function(){
     //  movie search data has been saved 
-    // console.log("saved");
-  });
-  html = '<div class="col-6 grid-item">  <div class="product-grid">      <div class="product-image">          <a href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" class="image"><img src=' + movies.Poster + '></a>          <span class="product-sale-label-right"><b>' + movies.imdbRating + ' </b><i class="fas fa-star"></i></span>          <span class="product-sale-label-left">' + movies.Rated + '</span>      </div>      <div class="product-content">          <h3 class="title"><a href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/">' + movies.Title + '</a></h3>          <div class="price">            ' + movies.Released + '          </div>          <a class="add-to-cart" href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/">            <i class="fas fa-play-circle"></i>watch now</a>      </div>  </div></div>';
+    console.log("saved");
+});  
+  selectionValue = movies.Type; //setting selection value to movie or series
+  if (selectionValue === "movie") {
+    console.log("movie");
+  html = '<div class="col-6 grid-item">  <div class="product-grid">      <div class="product-image">          <a href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" target="_blank" class="image"><img src='+movies.Poster+'></a>          <span class="product-sale-label-right"><b>' + movies.imdbRating + ' </b><i class="fas fa-star"></i></span>          <span class="product-sale-label-left">' + movies.Rated + '</span>      </div>      <div class="product-content">          <h3 class="title"><a href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" target="_blank">' + movies.Title + '</a></h3>          <div class="price">            ' + movies.Released + '          </div>          <a class="add-to-cart" href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" target="_blank">            <i class="fas fa-play-circle"></i>watch now</a>      </div>  </div></div>';
+  }
+  else if (selectionValue === "series") {
+    seriesId = movies.imdbID;
+    console.log(document.getElementById("seasonBox").value);
+  html = '<div class="col-6 grid-item">  <div class="product-grid">      <div class="product-image">          <a data-bs-toggle="modal" data-bs-target="#myModal" class="image"><img src='+movies.Poster+'></a>          <span class="product-sale-label-right"><b>' + movies.imdbRating + ' </b><i class="fas fa-star"></i></span>          <span class="product-sale-label-left">' + movies.Rated + '</span>      </div>      <div class="product-content">          <h3 class="title"><a data-bs-toggle="modal" data-bs-target="#myModal">' + movies.Title + '</a></h3>          <div class="price">            ' + movies.Released + '          </div>          <a class="add-to-cart" data-bs-toggle="modal" data-bs-target="#myModal">            <i class="fas fa-play-circle"></i>watch now</a>      </div>  </div></div>';
+  }
+  else {
+    console.log("else");
+  html = '<div class="col-6 grid-item">  <div class="product-grid">      <div class="product-image">          <a href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" target="_blank" class="image"><img src='+movies.Poster+'></a>          <span class="product-sale-label-right"><b>' + movies.imdbRating + ' </b><i class="fas fa-star"></i></span>          <span class="product-sale-label-left">' + movies.Rated + '</span>      </div>      <div class="product-content">          <h3 class="title"><a href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" target="_blank">' + movies.Title + '</a></h3>          <div class="price">            ' + movies.Released + '          </div>          <a class="add-to-cart" href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" target="_blank">            <i class="fas fa-play-circle"></i>watch now</a>      </div>  </div></div>';
+  }
   buyMeACoffee = '<div class="col-6 d-flex justify-content-center align-items-center">        <a href="https://www.buymeacoffee.com/vivekkum.ar" target="_blank">  <button href="https://www.buymeacoffee.com/vivekkum.ar" type="button" class="d-flex align-items-center rounded-pill btn btn-primary poppins-gfont" style="font-size: smaller;">            <i class="fs-5 fa-solid fa-mug-hot"></i>            <p class="mb-0 ps-1 fw-bold"> Buy me a coffee !</p>          </button></a>        </div>';
   document.querySelector('.horizontal-scroll-a').children[0].innerHTML = html + buyMeACoffee;
 }

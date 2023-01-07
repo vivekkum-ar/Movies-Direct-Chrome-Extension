@@ -357,3 +357,38 @@ body {
     opacity: 0;
   }
 }
+
+/* ---------------------------------------------------------------------------------------------- */
+/*                              For selection between movies or shows                             */
+/* ---------------------------------------------------------------------------------------------- */
+.selection-left-rounded {
+  font-size: smaller;
+  border-radius: 20px 0px 0px 20px;
+}
+
+.selection-right-rounded {
+  font-size: smaller;
+  border-radius: 0px 20px 20px 0px;
+}
+
+.selection-container{
+  position: absolute;
+  transform: translateY(-13px);
+  font-family: 'Poppins',sans-serif;
+}
+
+body > div.d-flex.justify-content-center.align-items-center.container.selection-container > div:nth-child(2) {
+  font-size: smaller;
+}
+
+#selectSeries:hover {
+  background-color: #f4d264;
+  color: #000;
+  cursor: pointer;
+}
+
+#selectMovies:hover {
+  background-color: #f4d264;
+  color: #000;
+  cursor: pointer;
+}

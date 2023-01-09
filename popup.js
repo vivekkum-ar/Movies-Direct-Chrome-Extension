@@ -55,6 +55,34 @@ let defaultMovie = {
   "Response": "True"
 }
 
+
+/* -------------------------------------------------------------------------- */
+/*          Function that populates the "horizontal-scroll-a" that is         */
+/*                      present in the hellomd.html file                      */
+/* -------------------------------------------------------------------------- */
+function populateHscrollA(movies){
+  chrome.storage.local.set({ "imdbID": movies.imdbID ,"Poster":movies.Poster,"imdbRating":movies.imdbRating,"Rated":movies.Rated,"Title":movies.Title,"Released":movies.Released,"Type":movies.Type }, function(){
+    //  movie search data has been saved 
+    console.log("saved");
+});  
+  selectionValue = movies.Type; //setting selection value to movie or series
+  if (selectionValue === "movie") {
+    console.log("movie");
+  html = '<div class="col-6 grid-item">  <div class="product-grid">      <div class="product-image">          <a href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" target="_blank" class="image"><img src='+movies.Poster+'></a>          <span class="product-sale-label-right"><b>' + movies.imdbRating + ' </b><i class="fas fa-star"></i></span>          <span class="product-sale-label-left">' + movies.Rated + '</span>      </div>      <div class="product-content">          <h3 class="title"><a href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" target="_blank">' + movies.Title + '</a></h3>          <div class="price">            ' + movies.Released + '          </div>          <a class="add-to-cart" href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" target="_blank">            <i class="fas fa-play-circle"></i>watch now</a>      </div>  </div></div>';
+  }
+  else if (selectionValue === "series") {
+    seriesId = movies.imdbID;
+    html = '<div class="col-6 grid-item">  <div class="product-grid">      <div class="product-image">          <a data-bs-toggle="modal" data-bs-target="#myModal" class="image"><img src=' + movies.Poster + '></a>          <span class="product-sale-label-right"><b>' + movies.imdbRating + ' </b><i class="fas fa-star"></i></span>          <span class="product-sale-label-left">' + movies.Rated + '</span>      </div>      <div class="product-content">          <h3 class="title"><a data-bs-toggle="modal" data-bs-target="#myModal">' + movies.Title + '</a></h3>          <div class="price">            ' + movies.Released + '          </div>          <a class="add-to-cart" data-bs-toggle="modal" data-bs-target="#myModal">            <i class="fas fa-play-circle"></i>watch now</a>      </div>  </div></div>';
+  }
+  else {
+    console.log("else");
+  html = '<div class="col-6 grid-item">  <div class="product-grid">      <div class="product-image">          <a href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" target="_blank" class="image"><img src='+movies.Poster+'></a>          <span class="product-sale-label-right"><b>' + movies.imdbRating + ' </b><i class="fas fa-star"></i></span>          <span class="product-sale-label-left">' + movies.Rated + '</span>      </div>      <div class="product-content">          <h3 class="title"><a href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" target="_blank">' + movies.Title + '</a></h3>          <div class="price">            ' + movies.Released + '          </div>          <a class="add-to-cart" href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" target="_blank">            <i class="fas fa-play-circle"></i>watch now</a>      </div>  </div></div>';
+  }
+  buyMeACoffee = '<div class="col-6 d-flex justify-content-center align-items-center">        <a href="https://www.buymeacoffee.com/vivekkum.ar" target="_blank">  <button href="https://www.buymeacoffee.com/vivekkum.ar" type="button" class="d-flex align-items-center rounded-pill btn btn-primary poppins-gfont" style="font-size: smaller;">            <i class="fs-5 fa-solid fa-mug-hot"></i>            <p class="mb-0 ps-1 fw-bold"> Buy me a coffee !</p>          </button></a>        </div>';
+  document.querySelector('.horizontal-scroll-a').children[0].innerHTML = html + buyMeACoffee;
+}
+
+
 /* -------------------------------------------------------------------------- */
 /*           Movie search history stored in chrome.storage.local is           */
 /*                    called for filling the first hscroll                    */
@@ -83,11 +111,12 @@ document.getElementById("md-searchBtn").addEventListener("click", async () => {
     controller = new AbortController();
     try {
       console.log("Request started...");
-      const response = await fetch('https://www.omdbapi.com/?t=' + document.getElementById("md-searchBox").value + '&apikey=' + omdb_api_key, {
+      const response = await fetch('https://www.omdbapi.com/?t=' +document.getElementById("md-searchBox").value+'&type='+selectionValue+'&apikey='+ omdb_api_key, {
         signal: controller.signal
       });
       const movies = await response.json();
       console.log(movies); // Was previousely console.log(`Fetched movies: ${JSON.stringify(movies)}`);
+      document.getElementById("message-new-a").innerText = "You searched for: "+movies.Title; // update title here because populateHScrollA will run during initialization also and hence we dont want to show "you searched for"  during initialization.
       populateHscrollA(movies);
     } catch (error) {
       console.log(`Fetch error: ${error.name}`);
@@ -107,34 +136,6 @@ cancelFetchButton.addEventListener("click", () => {
 /* -------------------------------------------------------------------------- */
 function log(message) {
   document.getElementById("message-new").innerText = message;
-}
-
-
-/* -------------------------------------------------------------------------- */
-/*          Function that populates the "horizontal-scroll-a" that is         */
-/*                      present in the hellomd.html file                      */
-/* -------------------------------------------------------------------------- */
-function populateHscrollA(movies){
-  chrome.storage.local.set({ "imdbID": movies.imdbID ,"Poster":movies.Poster,"imdbRating":movies.imdbRating,"Rated":movies.Rated,"Title":movies.Title,"Released":movies.Released,"Type":movies.Type }, function(){
-    //  movie search data has been saved 
-    console.log("saved");
-});  
-  selectionValue = movies.Type; //setting selection value to movie or series
-  if (selectionValue === "movie") {
-    console.log("movie");
-  html = '<div class="col-6 grid-item">  <div class="product-grid">      <div class="product-image">          <a href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" target="_blank" class="image"><img src='+movies.Poster+'></a>          <span class="product-sale-label-right"><b>' + movies.imdbRating + ' </b><i class="fas fa-star"></i></span>          <span class="product-sale-label-left">' + movies.Rated + '</span>      </div>      <div class="product-content">          <h3 class="title"><a href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" target="_blank">' + movies.Title + '</a></h3>          <div class="price">            ' + movies.Released + '          </div>          <a class="add-to-cart" href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" target="_blank">            <i class="fas fa-play-circle"></i>watch now</a>      </div>  </div></div>';
-  }
-  else if (selectionValue === "series") {
-    seriesId = movies.imdbID;
-    console.log(document.getElementById("seasonBox").value);
-  html = '<div class="col-6 grid-item">  <div class="product-grid">      <div class="product-image">          <a data-bs-toggle="modal" data-bs-target="#myModal" class="image"><img src='+movies.Poster+'></a>          <span class="product-sale-label-right"><b>' + movies.imdbRating + ' </b><i class="fas fa-star"></i></span>          <span class="product-sale-label-left">' + movies.Rated + '</span>      </div>      <div class="product-content">          <h3 class="title"><a data-bs-toggle="modal" data-bs-target="#myModal">' + movies.Title + '</a></h3>          <div class="price">            ' + movies.Released + '          </div>          <a class="add-to-cart" data-bs-toggle="modal" data-bs-target="#myModal">            <i class="fas fa-play-circle"></i>watch now</a>      </div>  </div></div>';
-  }
-  else {
-    console.log("else");
-  html = '<div class="col-6 grid-item">  <div class="product-grid">      <div class="product-image">          <a href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" target="_blank" class="image"><img src='+movies.Poster+'></a>          <span class="product-sale-label-right"><b>' + movies.imdbRating + ' </b><i class="fas fa-star"></i></span>          <span class="product-sale-label-left">' + movies.Rated + '</span>      </div>      <div class="product-content">          <h3 class="title"><a href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" target="_blank">' + movies.Title + '</a></h3>          <div class="price">            ' + movies.Released + '          </div>          <a class="add-to-cart" href="https://v2.vidsrc.me/embed/' + movies.imdbID + '/" target="_blank">            <i class="fas fa-play-circle"></i>watch now</a>      </div>  </div></div>';
-  }
-  buyMeACoffee = '<div class="col-6 d-flex justify-content-center align-items-center">        <a href="https://www.buymeacoffee.com/vivekkum.ar" target="_blank">  <button href="https://www.buymeacoffee.com/vivekkum.ar" type="button" class="d-flex align-items-center rounded-pill btn btn-primary poppins-gfont" style="font-size: smaller;">            <i class="fs-5 fa-solid fa-mug-hot"></i>            <p class="mb-0 ps-1 fw-bold"> Buy me a coffee !</p>          </button></a>        </div>';
-  document.querySelector('.horizontal-scroll-a').children[0].innerHTML = html + buyMeACoffee;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -190,3 +191,24 @@ document.getElementById('md-searchBox').onkeydown = function (evt) {
       document.getElementById('md-searchBtn').click();
   }
 };
+
+/* ---------------------------------------------------------------------------------------------- */
+/*                          Selection between movies and series/episodes                          */
+/* ---------------------------------------------------------------------------------------------- */
+document.getElementById('selectMovies').addEventListener('click', function(){
+  document.getElementById('selectMovies').classList.add('bg-warning');
+  document.getElementById('selectSeries').classList.remove('bg-warning');
+  document.getElementById('md-searchBox').placeholder = "Search Movies";
+  document.getElementById('md-searchBox').value = "";
+  document.getElementById('md-searchBox').focus();
+  selectionValue = "movie";
+});
+
+document.getElementById('selectSeries').addEventListener('click', function(){
+  document.getElementById('selectSeries').classList.add('bg-warning');
+  document.getElementById('selectMovies').classList.remove('bg-warning');
+  document.getElementById('md-searchBox').placeholder = "Search Series";
+  document.getElementById('md-searchBox').value = "";
+  document.getElementById('md-searchBox').focus();
+  selectionValue = "series";
+});

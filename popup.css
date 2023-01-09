@@ -4,6 +4,7 @@ body
     /* background-color:#ebebeb; */
     font-size:14px;
     font-family:Verdana;
+    height: 100vh;
 }
 
 a.text-transparent{
@@ -17,6 +18,7 @@ a.text-transparent{
   color: transparent;
   background: -webkit-linear-gradient(60deg, #ff0000,#fe2828,#ff7171, #FFB03A);
   padding-right: 5px;
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -32,6 +34,7 @@ font-family: 'Poppins', sans-serif;
 .background-clip-text{
   background: -webkit-linear-gradient(60deg, #ff0000,#fe2828,#ff7171, #FFB03A);
   padding-right: 5px;
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

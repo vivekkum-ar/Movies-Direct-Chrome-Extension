@@ -108,6 +108,11 @@ document.getElementById("md-searchBtn").addEventListener("click", async () => {
   if (document.getElementById("md-searchBox").value === "") {
     document.getElementById("errorShake").classList.toggle("d-none");
   } else {
+    /* ------ Below code is added to remove the error shake animation if it is already visible ------ */
+    if(document.getElementById("errorShake").classList.contains("d-none") == false){
+      document.getElementById("errorShake").classList.toggle("d-none");
+    }
+    /* ---------------------------------------------- - --------------------------------------------- */
     controller = new AbortController();
     try {
       console.log("Request started...");
@@ -191,6 +196,8 @@ document.getElementById('md-searchBox').onkeydown = function (evt) {
       document.getElementById('md-searchBtn').click();
   }
 };
+
+
 
 /* ---------------------------------------------------------------------------------------------- */
 /*                          Selection between movies and series/episodes                          */

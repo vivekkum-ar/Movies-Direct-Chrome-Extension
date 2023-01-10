@@ -139,9 +139,9 @@ cancelFetchButton.addEventListener("click", () => {
 /* -------------------------------------------------------------------------- */
 /*           Temporary log function tat logs the response from fetch          */
 /* -------------------------------------------------------------------------- */
-function log(message) {
-  document.getElementById("message-new").innerText = message;
-}
+// function log(message) {
+//   document.getElementById("message-new").innerText = message;
+// }
 
 /* -------------------------------------------------------------------------- */
 /*    Seperate other fetch for horizontal scroll b because it needs to run    */
@@ -218,4 +218,13 @@ document.getElementById('selectSeries').addEventListener('click', function(){
   document.getElementById('md-searchBox').value = "";
   document.getElementById('md-searchBox').focus();
   selectionValue = "series";
+});
+
+/* ---------------------------------------------------------------------------------------------- */
+/*                     Assigns the season episode modal to open correct video                     */
+/* ---------------------------------------------------------------------------------------------- */
+document.querySelector("#myModal > div > div > div.modal-footer.p-0 > a > button").addEventListener("click", () => {
+  if (document.getElementById("seasonBox").value != "" && document.getElementById("episodeBox").value != "") {
+    document.querySelector("#myModal > div > div > div.modal-footer.p-0 > a").href = "https://v2.vidsrc.me/embed/" + seriesId + "/" + document.getElementById("seasonBox").value + "-" + document.getElementById("episodeBox").value + "/";
+  }
 });

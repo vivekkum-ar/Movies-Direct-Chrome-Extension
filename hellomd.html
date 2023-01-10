@@ -116,6 +116,46 @@
   <div class="horizontal-scroll-container row padding-for-shadow" id="first-horizontal-scroll">
   </div>
 </div>
+
+<!-- ------------------------------------------------------------------------------------------- -->
+<!--                              Season/Episode Modal starts here                               -->
+<!-- ------------------------------------------------------------------------------------------- -->
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal-content animate__animated animate__bounceInLeft">
+
+      <!-- Modal Header -->
+      <div class="modal-header p-2">
+        <h4 class="modal-title">
+          <i class="fa-brands fa-chromecast text-danger pe-1" style="width: 1.5rem; height: 1.5rem;"></i>
+          <span class="fs-5 fw-bold span-logo poppins-gfont background-clip-text">moviesdirect</span>
+        </h4>
+        <button type="button" class="btn-close me-1" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="d-flex container mb-3">
+          <div class="pe-2">
+            <span class="fs-2 pt-1 d-flex caveat-gfont mx-2 fw-bold background-clip-text">Season:</span>
+            <input class="form-control poppins-gfont border-warning border-2 rounded-pill" id="seasonBox" type="number" placeholder="Season" aria-label="Search">
+          </div>
+          <div>
+            <span class="fs-2 pt-1 d-flex caveat-gfont mx-2 fw-bold background-clip-text">Episode:</span>
+            <input class="form-control poppins-gfont border-warning border-2 rounded-pill" id="episodeBox" type="number" placeholder="Episode" aria-label="Search">
+          </div>
+        </div>
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer p-0">
+        <button type="button" class="btn btn-danger poppins-gfont px-2 py-1 rounded-pill" data-bs-dismiss="modal">Cancel</button>
+        <a target = "_blank"><button type="button" class="btn btn-success poppins-gfont px-2 py-1 rounded-pill" data-bs-dismiss="modal">Proceed</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     <!-- ----------------------------------------------------------------------- -->
     <!--                       Space to include custom js                        -->
     <!-- ----------------------------------------------------------------------- -->
